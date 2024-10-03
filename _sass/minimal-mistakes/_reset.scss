@@ -30,14 +30,15 @@ html {
 
 body { margin: 0; }
 
-/* Selected elements */
+/* Selected elements (선택된 텍스트 스타일 적용) */
 
+// firefox 용
 ::-moz-selection {
   color: #fff;
   background: #000;
 }
 
-::selection {
+::selection { 
   color: #fff;
   background: #000;
 }
