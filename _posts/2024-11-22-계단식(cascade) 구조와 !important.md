@@ -1,6 +1,6 @@
 ---
 title: CSS의 계단식(cascade) 구조와 !important
-date: 2024-11-22 15:00:00 +0900
+date: 2024-11-24 22:00:00 +0900
 categories: [CSS]
 tags: [css, cascade]     # TAG names should always be lowercase
 description: 우선 순위와 !important의 역할
@@ -30,7 +30,7 @@ h1 {
 5. Order of Appearance
 
 ## Relevance
-CSS는 가장 먼저 모든 규칙들을 필터링해, 해당 요소에 적용되고 적절한 미디어 규칙(`@media`)에 속하는 규칙을 찾아낸다.
+CSS는 가장 먼저 모든 규칙들을 필터링해, 적절한 미디어 규칙(`@media`)에 속하는 규칙을 찾아낸다.
 
 ```css
 @media screen {
@@ -56,7 +56,7 @@ CSS에는 3개의 기본적인 Origin이 존재한다. <br>
 2. user
 3. user-agent (브라우저)  
 
-기본적으로는 브라우저가 가장 낮은 우선순위를 가지고, 그 위에는 유저, 그리고 웹 개발자가 가장 높은 우선순위를 가지게 된다. 하지만 몇몇 경우에 브라우저와 유저는 웹 개발자보다 우선해서 자신의 변경사항을 적용할 필요가 있고 이,때 `!important`가 그러한 역할을 수행한다. <br>
+기본적으로는 브라우저가 가장 낮은 우선순위를 가지고, 그 위에는 유저, 그리고 웹 개발자가 가장 높은 우선순위를 가지게 된다. 하지만 몇몇 경우에 브라우저와 유저는 웹 개발자보다 우선해서 자신의 변경사항을 적용할 필요가 있고, 이때 `!important`가 그러한 역할을 수행한다. <br>
 
 `!important`를 사용하면 단순히 우선순위가 높아진다고 생각할 수 있지만, 사실은 그렇지 않다. `!important`는 기존의 계단식 구조를 거꾸로 뒤집는 역할을 수행한다. 따라서 `!important`가 존재하는 상황에서의 우선순위는 다음과 같다.
 
@@ -68,10 +68,10 @@ CSS에는 3개의 기본적인 Origin이 존재한다. <br>
 5. user
 6. user-agent
 
-`!important`를 사용해서 브라우저는 몇몇의 중요한 규칙들을 웹 개발자가 변경할 수 없도록 설정하고, 유저는 인터페이스 설정과 같은 자신의 특정한 스타일을 웹 개발자가 변경할 수 없도록 설정할 수 있다.
+`!important`를 사용해서 브라우저는 몇몇의 중요한 규칙들을 웹 개발자가 변경할 수 없도록 설정하고, 유저는 인터페이스 설정과 같은 자신의 커스텀 스타일을 웹 개발자가 변경할 수 없도록 설정할 수 있다.
 
 ## Cascade Layer
-`@layer`는 여러 스타일을 담아두고, 레이어 간의 우선순위를 설정하는 데에도 사용한다. 먼저 선언된 layer가 낮은 우선순위를 가지고, 나중에 선언될 수록 높은 우선순위를 가진다.
+`@layer`는 여러 스타일을 담아두고, 레이어 간의 우선순위를 설정하는 데 사용한다. 먼저 선언된 layer가 낮은 우선순위를 가지고, 나중에 선언될 수록 높은 우선순위를 가진다.
 
 ```css
 @layer firstLayer, secondLayer; /* 레이어 선언 */
@@ -96,7 +96,7 @@ h1 {
 }
 ```
 
-이때 레이어의 우선순위는 일반 스타일, `secondLayer`, `firstLayer` 순으로 적용되고, 따라서 `h1`의 색은 `red`가 된다. <br>
+이때 레이어의 우선순위는 일반 스타일, `secondLayer`, `firstLayer` 순으로 적용되고, 우선순위에 따라 `h1`의 색은 `red`가 적용된다. <br>
 `!important`는 이때도 같은 역할을 수행한다. 따라서 `!important`가 포함된 레이어의 우선순위는 다음과 같다.
 1. `!important firstLayer`
 2. `!important secondLayer`
@@ -222,7 +222,7 @@ h1#specificityID {
 
 레이어에서의 우선순위는 일반 스타일(unlayered) -> secondLayer -> firstLayer 순이고, 레이어가 동일할 때는 선택자의 명시도(specificity)에 따라 우선순위가 결정된다. `h1`의 명시도는 0-0-0-1이고, `h1#specificityID`의 명시도는 0-1-0-1이다. <br>
 
-따라서 `!important`를 고려했을 때의 우선순위는 다음과 같다.
+따라서 해당 예시에서의 우선순위는 다음과 같다.
 1. `!important firstLayer`
 2. `!important secondLayer`
 3. `!important h1`
@@ -276,3 +276,7 @@ h1#specificityID {
 </table>
 
 ![결과 이미지](./assets/img/post/post2/css-result.PNG "출력")
+
+## 참고
+<https://css-tricks.com/css-cascade-layers/#aa-important-context>
+<https://developer.mozilla.org/ko/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance>
