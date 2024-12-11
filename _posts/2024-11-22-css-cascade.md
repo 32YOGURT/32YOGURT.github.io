@@ -12,7 +12,7 @@ CSS는 Cascading Style Sheet의 약자로, CSS를 이해하는 데 있어 계단
 
 ```css
 h1 {
-    background-color: red;
+    background-color: pink;
 }
 
 h1 {
