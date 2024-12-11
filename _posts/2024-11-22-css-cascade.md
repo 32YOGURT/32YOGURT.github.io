@@ -1,12 +1,12 @@
 ---
-title: CSS의 계단식(cascade) 구조와 !important
+title: CSS의 계단식(Cascade) 구조와 !important
 date: 2024-11-24 22:00:00 +0900
 categories: [CSS]
 tags: [css, cascade]     # TAG names should always be lowercase
 description: 우선 순위와 !important의 역할
 ---
 
-## 계단식(cascade) 구조 
+## 계단식(Cascade) 구조 
 
 CSS는 Cascading Style Sheet의 약자로, CSS를 이해하는 데 있어 계단식 구조를 이해할 필요가 있다. 기존의 CSS 파일을 내가 원하는 형태로 다시 작성하거나 부모 요소에게서 상속을 받을 때, 동일한 요소에 2가지 이상의 규칙이 중복되어 적용될 때가 있다.
 
