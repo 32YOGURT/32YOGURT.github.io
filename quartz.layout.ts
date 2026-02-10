@@ -5,11 +5,17 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [
-    Component.PageTitle(),
-    Component.Spacer(),
-    Component.GithubLink({ url: "https://github.com/32YOGURT" }),
-    Component.Search(),
-    Component.Darkmode(),
+    Component.Flex({
+      direction: "row",
+      gap: "1rem",
+      components: [
+        { Component: Component.PageTitle(), shrink: false },
+        { Component: Component.Spacer(), grow: true },
+        { Component: Component.GithubLink({ url: "https://github.com/32YOGURT" }), shrink: false },
+        { Component: Component.Darkmode(), shrink: false },
+        { Component: Component.Search(), shrink: false },
+      ],
+    }),
   ],
   afterBody: [],
   footer: Component.Footer({
@@ -31,18 +37,17 @@ export const defaultContentPageLayout: PageLayout = {
     Component.TagList(),
   ],
   left: [
-    Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),
-    Component.Flex({
-      components: [
-        {
-          Component: Component.Search(),
-          grow: true,
-        },
-        { Component: Component.Darkmode() },
-        { Component: Component.ReaderMode() },
-      ],
-    }),
+    // Component.MobileOnly(Component.Spacer()),
+    // Component.Flex({
+    //   components: [
+    //     {
+    //       Component: Component.Search(),
+    //       grow: true,
+    //     },
+    //     { Component: Component.Darkmode() },
+    //     { Component: Component.ReaderMode() },
+    //   ],
+    // }),
     Component.Explorer(),
   ],
   right: [
@@ -56,17 +61,16 @@ export const defaultContentPageLayout: PageLayout = {
 export const defaultListPageLayout: PageLayout = {
   beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
   left: [
-    Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),
-    Component.Flex({
-      components: [
-        {
-          Component: Component.Search(),
-          grow: true,
-        },
-        { Component: Component.Darkmode() },
-      ],
-    }),
+    // Component.MobileOnly(Component.Spacer()),
+    // Component.Flex({
+    //   components: [
+    //     {
+    //       Component: Component.Search(),
+    //       grow: true,
+    //     },
+    //     { Component: Component.Darkmode() },
+    //   ],
+    // }),
     Component.Explorer(),
   ],
   right: [],

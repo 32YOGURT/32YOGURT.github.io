@@ -5,17 +5,10 @@ const Header: QuartzComponent = ({ children }: QuartzComponentProps) => {
 }
 
 Header.css = `
+/* CustomHeader가 레이아웃을 전담하므로 기본 스타일만 유지 */
 header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 2rem 0;
-  gap: 1.5rem;
-}
-
-header h1 {
   margin: 0;
-  flex: auto;
+  padding: 0;
 }
 `
 
