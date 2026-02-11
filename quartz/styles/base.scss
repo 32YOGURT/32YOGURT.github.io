@@ -196,12 +196,30 @@ a {
     row-gap: #{map.get($desktopGrid, rowGap)};
     grid-template-areas: #{map.get($desktopGrid, templateAreas)};
 
+    // 좌측 사이드바가 비어있으면 2단 그리드 사용
+    &:not(:has(.sidebar.left > *)) {
+      grid-template-columns: #{map.get($desktopGrid2Col, templateColumns)};
+      grid-template-rows: #{map.get($desktopGrid2Col, templateRows)};
+      column-gap: #{map.get($desktopGrid2Col, columnGap)};
+      row-gap: #{map.get($desktopGrid2Col, rowGap)};
+      grid-template-areas: #{map.get($desktopGrid2Col, templateAreas)};
+    }
+
     @media all and ($tablet) {
       grid-template-columns: #{map.get($tabletGrid, templateColumns)};
       grid-template-rows: #{map.get($tabletGrid, templateRows)};
       column-gap: #{map.get($tabletGrid, columnGap)};
       row-gap: #{map.get($tabletGrid, rowGap)};
       grid-template-areas: #{map.get($tabletGrid, templateAreas)};
+
+      // 좌측 사이드바가 비어있으면 2단 그리드 사용
+      &:not(:has(.sidebar.left > *)) {
+        grid-template-columns: #{map.get($tabletGrid2Col, templateColumns)};
+        grid-template-rows: #{map.get($tabletGrid2Col, templateRows)};
+        column-gap: #{map.get($tabletGrid2Col, columnGap)};
+        row-gap: #{map.get($tabletGrid2Col, rowGap)};
+        grid-template-areas: #{map.get($tabletGrid2Col, templateAreas)};
+      }
     }
     @media all and ($mobile) {
       grid-template-columns: #{map.get($mobileGrid, templateColumns)};

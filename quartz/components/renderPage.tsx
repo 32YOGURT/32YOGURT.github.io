@@ -270,7 +270,7 @@ export function renderPage(
         </Header>
         <div id="quartz-root" class="page">
           <Body {...componentData}>
-            {LeftComponent}
+            {/* {LeftComponent} */}
             <div class="center">
               <div class="page-header">
                 <div class="popover-hint">

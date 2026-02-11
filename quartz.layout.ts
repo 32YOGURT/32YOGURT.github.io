@@ -7,13 +7,20 @@ export const sharedPageComponents: SharedLayout = {
   header: [
     Component.Flex({
       direction: "row",
-      gap: "1rem",
+      gap: "0",
       components: [
         { Component: Component.PageTitle(), shrink: false },
-        { Component: Component.Spacer(), grow: true },
-        { Component: Component.GithubLink({ url: "https://github.com/32YOGURT" }), shrink: false },
-        { Component: Component.Darkmode(), shrink: false },
-        { Component: Component.Search(), shrink: false },
+        { 
+          Component: Component.Flex({
+            direction: "row",
+            gap: "1rem",
+            components: [
+              { Component: Component.GithubLink({ url: "https://github.com/32YOGURT" }) },
+              { Component: Component.Darkmode() },
+              { Component: Component.Search() },
+            ]
+          })
+        },
       ],
     }),
   ],
@@ -36,20 +43,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.ContentMeta(),
     Component.TagList(),
   ],
-  left: [
-    // Component.MobileOnly(Component.Spacer()),
-    // Component.Flex({
-    //   components: [
-    //     {
-    //       Component: Component.Search(),
-    //       grow: true,
-    //     },
-    //     { Component: Component.Darkmode() },
-    //     { Component: Component.ReaderMode() },
-    //   ],
-    // }),
-    Component.Explorer(),
-  ],
+  left: [], // 2단 레이아웃: 좌측 사이드바 없음
   right: [
     Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents()),
@@ -60,18 +54,6 @@ export const defaultContentPageLayout: PageLayout = {
 // components for pages that display lists of pages  (e.g. tags or folders)
 export const defaultListPageLayout: PageLayout = {
   beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
-  left: [
-    // Component.MobileOnly(Component.Spacer()),
-    // Component.Flex({
-    //   components: [
-    //     {
-    //       Component: Component.Search(),
-    //       grow: true,
-    //     },
-    //     { Component: Component.Darkmode() },
-    //   ],
-    // }),
-    Component.Explorer(),
-  ],
+  left: [], // 2단 레이아웃: 좌측 사이드바 없음
   right: [],
 }

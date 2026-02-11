@@ -1,4 +1,6 @@
 @use "./base.scss";
+@use "sass:map";
+@use "./variables.scss" as *;
 
 // put your custom CSS here!
 
@@ -11,38 +13,91 @@
   src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-Regular.woff2') format('woff2');
 }
 
-// Header 스타일
 header {
   position: sticky;
   top: 0;
   z-index: 999;
   background-color: var(--light);
   width: 100%;
+  max-width: calc(#{map.get($breakpoints, desktop)} + 300px); // 본문(.page)과 동일
+  margin: 0 auto; // 중앙 정렬
   
-  .flex-component {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
+  // Grid 레이아웃 적용: 2단 고정 (auto 320px)
+  & > .flex-component {
+    display: grid !important;
+    grid-template-columns: #{map.get($desktopGrid2Col, templateColumns)} !important;
+    gap: #{map.get($desktopGrid2Col, columnGap)} !important;
+    padding: 1rem 0;
+
+    // 모바일에서는 Flex 유지
+    @media (max-width: 800px) {
+      display: flex !important;
+      padding: 0.75rem 1rem;
+      gap: 0.5rem !important;
+    }
+
+    // 데스크탑이 아닌 경우 여백 조정
+    @media all and not ($desktop) {
+      margin-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    // Flex 컴포넌트의 자식 div들의 flex 스타일 무효화
+    & > div {
+      flex-grow: unset !important;
+      flex-shrink: unset !important;
+      flex-basis: unset !important;
+      order: unset !important;
+      align-self: unset !important;
+      justify-self: unset !important;
+      
+      // 모바일에서는 flex 스타일 복원
+      @media (max-width: 800px) {
+        flex-grow: initial;
+        flex-shrink: initial;
+        flex-basis: initial;
+      }
+    }
   }
 
-  // 페이지 타이틀 스타일
+  // 1. PageTitle을 감싸는 div: 본문 영역 (1번 컬럼)
+  & > .flex-component > div:nth-child(1) {
+    grid-column: 1 !important;
+    justify-self: start !important;
+    display: flex;
+    align-items: center;
+    padding-left: $contentLeftMargin; // 본문과 동일한 왼쪽 여백
+
+    @media all and not ($desktop) {
+      padding-left: 0; // 태블릿/모바일에서는 여백 없음
+    }
+  }
+
+  // 2. 아이콘 그룹을 감싸는 div: 우측 사이드바 영역 (2번 컬럼)
+  & > .flex-component > div:nth-child(2) {
+    grid-column: 2 !important;
+    justify-self: start !important;
+    
+    // 내부 flex는 유지
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  // PageTitle 스타일
   .page-title {
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--dark);
     text-decoration: none;
+    margin: 0;
     
     &:hover {
       color: var(--secondary);
     }
   }
 
-  // Spacer
-  .spacer {
-    flex: 1;
-  }
-
-  // 우측 컴포넌트들
+  // 아이콘 스타일
   .search,
   .darkmode,
   .github-link {
@@ -51,14 +106,24 @@ header {
   }
 
   // 모바일 반응형
-  @media (max-width: 768px) {
-    .flex-component {
-      padding: 0.75rem 1rem;
-      gap: 0.5rem !important;
-    }
-
+  @media (max-width: 800px) {
     .page-title {
       font-size: 1rem;
     }
+    
+    // 모바일에서는 아이콘 그룹 자동 정렬
+    & > .flex-component > div:nth-child(2) {
+      margin-left: auto;
+    }
+  }
+}
+
+// 본문 왼쪽 여백 추가 (좌측 사이드바 제거로 인한 여백 확보)
+.page > #quartz-body > .center {
+  padding-left: $contentLeftMargin;
+  box-sizing: border-box; // padding이 width에 포함되도록
+  
+  @media all and not ($desktop) {
+    padding-left: 0;
   }
 }

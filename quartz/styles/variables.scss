@@ -19,6 +19,7 @@ $desktop: "(min-width: #{map.get($breakpoints, desktop)})";
 $pageWidth: #{map.get($breakpoints, mobile)};
 $sidePanelWidth: 320px; //380px;
 $topSpacing: 2rem;
+$contentLeftMargin: 15rem; // 본문 및 헤더 왼쪽 여백
 $boldWeight: 700;
 $semiBoldWeight: 600;
 $normalWeight: 400;
@@ -55,4 +56,28 @@ $desktopGrid: (
     '"grid-sidebar-left grid-header grid-sidebar-right"\
       "grid-sidebar-left grid-center grid-sidebar-right"\
       "grid-sidebar-left grid-footer grid-sidebar-right"',
+);
+
+// 2단 레이아웃 (좌측 사이드바 없음)
+$desktopGrid2Col: (
+  templateRows: "auto auto auto",
+  templateColumns: "auto #{$sidePanelWidth}",
+  rowGap: "5px",
+  columnGap: "5px",
+  templateAreas:
+    '"grid-header grid-sidebar-right"\
+      "grid-center grid-sidebar-right"\
+      "grid-footer grid-sidebar-right"',
+);
+
+$tabletGrid2Col: (
+  templateRows: "auto auto auto auto",
+  templateColumns: "auto",
+  rowGap: "5px",
+  columnGap: "5px",
+  templateAreas:
+    '"grid-header"\
+      "grid-center"\
+      "grid-sidebar-right"\
+      "grid-footer"',
 );
