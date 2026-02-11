@@ -1,6 +1,7 @@
 ---
-title: Welcome to My Blog
+title: 안녕하세요! 👋
 ---
 
-This is a blank Quartz installation.
-See the [documentation](https://quartz.jzhao.xyz) for how to get started.
+이곳은 개발, 프로젝트, 그리고 일상의 기록을 담는 공간입니다.
+
+작성자가 궁금하시다면 [About](/about) 페이지를 확인해보세요!

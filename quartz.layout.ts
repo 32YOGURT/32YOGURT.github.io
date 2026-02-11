@@ -13,9 +13,21 @@ export const sharedPageComponents: SharedLayout = {
         { 
           Component: Component.Flex({
             direction: "row",
+            gap: "0.5rem",
+            components: [
+              { Component: Component.HeaderButton({ text: "Knowledge", link: "/knowledge" }) },
+              { Component: Component.HeaderButton({ text: "Project", link: "/project" }) },
+              { Component: Component.HeaderButton({ text: "Log", link: "/log" }) },
+              { Component: Component.HeaderButton({ text: "About", link: "/about" }) },
+            ]
+          })
+        },
+        { 
+          Component: Component.Flex({
+            direction: "row",
             gap: "1rem",
             components: [
-              { Component: Component.GithubLink({ url: "https://github.com/32YOGURT" }) },
+              // { Component: Component.GithubLink({ url: "https://github.com/32YOGURT" }) },
               { Component: Component.Darkmode() },
               { Component: Component.Search() },
             ]
@@ -40,8 +52,21 @@ export const defaultContentPageLayout: PageLayout = {
       condition: (page) => page.fileData.slug !== "index",
     }),
     Component.ArticleTitle(),
-    Component.ContentMeta(),
+    Component.ConditionalRender({
+      component: Component.ContentMeta(),
+      condition: (page) => page.fileData.slug !== "index",
+    }),
     Component.TagList(),
+  ],
+  afterBody: [
+    Component.ConditionalRender({
+      component: Component.RecentNotes({ 
+        title: "최근 게시글",
+        limit: 5,
+        showTags: true,
+      }),
+      condition: (page) => page.fileData.slug === "index",
+    }),
   ],
   left: [], // 2단 레이아웃: 좌측 사이드바 없음
   right: [
@@ -54,6 +79,7 @@ export const defaultContentPageLayout: PageLayout = {
 // components for pages that display lists of pages  (e.g. tags or folders)
 export const defaultListPageLayout: PageLayout = {
   beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
+  afterBody: [],
   left: [], // 2단 레이아웃: 좌측 사이드바 없음
   right: [],
 }

@@ -60,9 +60,10 @@ header {
     }
   }
 
-  // 1. PageTitle을 감싸는 div: 본문 영역 (1번 컬럼)
+  // 1. PageTitle을 감싸는 div: 본문 영역 (1번 컬럼 왼쪽)
   & > .flex-component > div:nth-child(1) {
     grid-column: 1 !important;
+    grid-row: 1 !important;
     justify-self: start !important;
     display: flex;
     align-items: center;
@@ -73,20 +74,32 @@ header {
     }
   }
 
-  // 2. 아이콘 그룹을 감싸는 div: 우측 사이드바 영역 (2번 컬럼)
+  // 2. Flex1 (버튼 그룹): 본문 영역 (1번 컬럼 오른쪽 끝)
   & > .flex-component > div:nth-child(2) {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    justify-self: end !important;
+    
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  // 3. Flex2 (아이콘 그룹): 우측 사이드바 영역 (2번 컬럼 왼쪽 끝)
+  & > .flex-component > div:nth-child(3) {
     grid-column: 2 !important;
+    grid-row: 1 !important;
     justify-self: start !important;
     
-    // 내부 flex는 유지
     display: flex;
     align-items: center;
     gap: 1rem;
+    padding-left: 2rem;
   }
 
   // PageTitle 스타일
   .page-title {
-    font-size: 1.25rem;
+    font-size: 1.5rem; // 크기 증가 (1.25rem -> 1.5rem)
     font-weight: 700;
     color: var(--dark);
     text-decoration: none;
@@ -94,6 +107,19 @@ header {
     
     &:hover {
       color: var(--secondary);
+    }
+  }
+
+  // HeaderButton 스타일
+  .header-button {
+    font-weight: 600; // 굵게
+    font-size: 0.95rem;
+    padding: 0.4rem 0.9rem;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background-color: var(--lightgray);
+      transform: translateY(-1px); // 살짝 올라가는 효과
     }
   }
 

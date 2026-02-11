@@ -9,8 +9,32 @@
     margin-top: 1rem;
     padding-left: 0;
 
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
     & > li {
-      margin: 1rem 0;
+      margin: 0;
+      padding: 1.5rem;
+      border: 1px solid var(--lightgray);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      background-color: var(--light);
+
+      &:hover {
+        border-color: var(--secondary);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transform: translateY(-2px);
+      }
+
+      .section > .desc {
+        margin: 0;
+        & > h3 {
+          margin-top: 0;
+          font-size: 1.2rem;
+        }
+      }
+
       .section > .desc > h3 > a {
         background-color: transparent;
       }
@@ -18,6 +42,7 @@
       .section > .meta {
         margin: 0 0 0.5rem 0;
         opacity: 0.6;
+        font-size: 0.9rem;
       }
     }
   }
