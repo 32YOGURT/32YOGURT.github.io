@@ -61,6 +61,9 @@ ul.toc-content.overflow {
   @for $i from 0 through 6 {
     & .depth-#{$i} {
       padding-left: calc(1rem * #{$i});
+      font-size: calc(1rem - (#{$i} * 0.08rem));
+      padding-top: 0.2rem;
+      padding-bottom: 0.2rem;
     }
   }
 }

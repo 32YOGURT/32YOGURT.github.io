@@ -147,9 +147,21 @@ header {
 // 본문 왼쪽 여백 추가 (좌측 사이드바 제거로 인한 여백 확보)
 .page > #quartz-body > .center {
   padding-left: $contentLeftMargin;
+  padding-top: 4rem; // 상단 여백 추가
   box-sizing: border-box; // padding이 width에 포함되도록
-  
+
   @media all and not ($desktop) {
     padding-left: 0;
   }
+}
+
+// 우측 사이드바 상단 여백 추가
+.sidebar.right {
+  padding-top: 6rem !important;
+}
+
+// 문단 간격 개선
+p {
+  margin-bottom: 1.8rem;
+  text-wrap: pretty; // 단어가 예쁘게 줄바꿈 되도록 (최신 브라우저 지원)
 }

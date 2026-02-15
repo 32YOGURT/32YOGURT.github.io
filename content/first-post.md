@@ -2,15 +2,9 @@
 title: Quartz 블로그 시작하기
 date: 2026-02-10
 tags:
-  - 블로그
   - Quartz
-  - 시작
 description: Quartz로 만든 첫 번째 블로그 포스트입니다.
 ---
-
-# Quartz 블로그 시작하기
-
-안녕하세요! 이것은 테스트용 첫 번째 블로그 포스트입니다.
 
 ## Quartz란?
 
