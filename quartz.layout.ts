@@ -50,7 +50,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.ArticleTitle(),
     Component.ConditionalRender({
       component: Component.ContentMeta(),
-      condition: (page) => page.fileData.slug !== "index",
+      condition: (page) => !["index", "knowledge", "project", "log"].includes(page.fileData.slug ?? ""),
     }),
     Component.TagList(),
   ],
@@ -74,7 +74,13 @@ export const defaultContentPageLayout: PageLayout = {
 
 // components for pages that display lists of pages  (e.g. tags or folders)
 export const defaultListPageLayout: PageLayout = {
-  beforeBody: [Component.ArticleTitle(), Component.ContentMeta()],
+  beforeBody: [
+    Component.ArticleTitle(),
+    Component.ConditionalRender({
+      component: Component.ContentMeta(),
+      condition: (page) => !["index", "knowledge/index", "project/index", "log/index"].includes(page.fileData.slug ?? ""),
+    }),
+  ],
   afterBody: [],
   left: [], // 2단 레이아웃: 좌측 사이드바 없음
   right: [],

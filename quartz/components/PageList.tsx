@@ -72,10 +72,7 @@ export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort
 
         return (
           <li class="section-li">
-            <div class="section">
-              <p class="meta">
-                {page.dates && <Date date={getDate(cfg, page)!} locale={cfg.locale} />}
-              </p>
+            <div class="section-pagelist">
               <div class="desc">
                 <h3>
                   <a href={resolveRelative(fileData.slug!, page.slug!)} class="internal">
@@ -83,6 +80,11 @@ export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort
                   </a>
                 </h3>
               </div>
+              {page.dates && (
+                <p class="meta">
+                  <Date date={getDate(cfg, page)!} locale={cfg.locale} />
+                </p>
+              )}
               <ul class="tags">
                 {tags.map((tag) => (
                   <li>
@@ -104,11 +106,49 @@ export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort
 }
 
 PageList.css = `
-.section h3 {
+.section-ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0;
+}
+
+.section-li {
+  padding: 1.5rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  background-color: var(--light);
+}
+
+.section-li:hover {
+  border-color: var(--secondary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.section-pagelist h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.section-pagelist > .desc {
   margin: 0;
 }
 
-.section > .tags {
+.section-pagelist > .desc > h3 > a {
+  background-color: transparent;
+}
+
+.section-pagelist > .meta {
+  margin: 0 0 0.5rem 0;
+  opacity: 0.6;
+  font-size: 0.9rem;
+}
+
+.section-pagelist > .tags {
   margin: 0;
+  padding-bottom: 0;
 }
 `
