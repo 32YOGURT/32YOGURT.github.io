@@ -1,6 +1,7 @@
 ---
 uuid: 20260219143016
 publish: true
+tags: [moduly]
 ---
 
 ## what is moduly?

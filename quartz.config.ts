@@ -9,7 +9,7 @@ import * as Plugin from "./quartz/plugins"
 const config: QuartzConfig = {
   configuration: {
     pageTitle: "32YOGURT",
-    pageTitleSuffix: "| 기술 블로그",
+    pageTitleSuffix: " | 기술 블로그",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
@@ -26,7 +26,7 @@ const config: QuartzConfig = {
         header: "Pretendard",
         body: "Pretendard",
         code: "JetBrains Mono",
-      },      
+      },
       colors: {
         lightMode: {
           light: "#fafafa",

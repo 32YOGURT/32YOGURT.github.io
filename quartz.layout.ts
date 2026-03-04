@@ -10,7 +10,7 @@ export const sharedPageComponents: SharedLayout = {
       gap: "0",
       components: [
         { Component: Component.PageTitle(), shrink: false },
-        { 
+        {
           Component: Component.Flex({
             direction: "row",
             gap: "0.5rem",
@@ -19,10 +19,10 @@ export const sharedPageComponents: SharedLayout = {
               { Component: Component.HeaderButton({ text: "Project", link: "/project" }) },
               { Component: Component.HeaderButton({ text: "Log", link: "/log" }) },
               { Component: Component.HeaderButton({ text: "About", link: "/about" }) },
-            ]
-          })
+            ],
+          }),
         },
-        { 
+        {
           Component: Component.Flex({
             direction: "row",
             gap: "1rem",
@@ -30,8 +30,8 @@ export const sharedPageComponents: SharedLayout = {
               // { Component: Component.GithubLink({ url: "https://github.com/32YOGURT" }) },
               { Component: Component.Darkmode() },
               { Component: Component.Search() },
-            ]
-          })
+            ],
+          }),
         },
       ],
     }),
@@ -50,13 +50,14 @@ export const defaultContentPageLayout: PageLayout = {
     Component.ArticleTitle(),
     Component.ConditionalRender({
       component: Component.ContentMeta(),
-      condition: (page) => !["index", "knowledge", "project", "log"].includes(page.fileData.slug ?? ""),
+      condition: (page) =>
+        !["index", "knowledge", "project", "log"].includes(page.fileData.slug ?? ""),
     }),
     Component.TagList(),
   ],
   afterBody: [
     Component.ConditionalRender({
-      component: Component.RecentNotes({ 
+      component: Component.RecentNotes({
         title: "최근 게시글",
         limit: 5,
         showTags: true,
@@ -78,7 +79,10 @@ export const defaultListPageLayout: PageLayout = {
     Component.ArticleTitle(),
     Component.ConditionalRender({
       component: Component.ContentMeta(),
-      condition: (page) => !["index", "knowledge/index", "project/index", "log/index"].includes(page.fileData.slug ?? ""),
+      condition: (page) =>
+        !["index", "knowledge/index", "project/index", "log/index"].includes(
+          page.fileData.slug ?? "",
+        ),
     }),
   ],
   afterBody: [],
